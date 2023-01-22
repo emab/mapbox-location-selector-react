@@ -4,10 +4,10 @@
   "version": "0.1.1",
   "type": "module",
   "files": ["dist"],
-  "module": "./dist/LocationPicker.umd.cjs",
+  "module": "./dist/LocationSelector.js",
   "exports": {
     ".": {
-      "import": "./dist/LocationPicker.umd.cjs"
+      "import": "./dist/LocationSelector.js"
     }
   },
   "scripts": {

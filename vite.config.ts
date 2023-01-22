@@ -9,9 +9,9 @@ export default defineConfig({
     sourcemap: true,
     lib: {
       formats: ['es'],
-      entry: './src/LocationPicker.tsx',
-      name: 'LocationPicker',
-      fileName: 'LocationPicker',
+      entry: './src/LocationSelector.tsx',
+      name: 'LocationSelector',
+      fileName: 'LocationSelector',
     },
     rollupOptions: {
       external: [

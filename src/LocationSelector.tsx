@@ -1,12 +1,16 @@
 import {useCallback, useEffect, useMemo, useRef, useState} from 'react';
+import ReactDOM from 'react-dom';
+
 import type {MapProps, MapRef} from 'react-map-gl';
 import Mapbox, {Marker} from 'react-map-gl';
-import styles from './PositionPicker.module.css';
+
 import type {GeocoderOptions} from '@mapbox/mapbox-gl-geocoder';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+
 import type {Map} from 'mapbox-gl';
 import mapbox from 'mapbox-gl';
-import ReactDOM from 'react-dom';
+
+import styles from './LocationSelector.module.css';
 
 export type Location = {
   lng: number;
