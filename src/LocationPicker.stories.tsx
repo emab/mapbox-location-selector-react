@@ -1,9 +1,9 @@
 import {ComponentMeta, ComponentStory} from '@storybook/react';
-import {LocationPicker} from './LocationPicker';
+import {LocationSelector} from './LocationSelector';
 import {action} from '@storybook/addon-actions';
 
 export default {
-  title: 'Location Picker',
+  title: 'Location Selector',
   parameters: {
     layout: 'fullscreen',
   },
@@ -13,11 +13,11 @@ export default {
     initialPosition: undefined,
     mapProps: {},
   },
-} as ComponentMeta<typeof LocationPicker>;
+} as ComponentMeta<typeof LocationSelector>;
 
-const Template: ComponentStory<typeof LocationPicker> = args => {
+const Template: ComponentStory<typeof LocationSelector> = args => {
   return (
-    <LocationPicker {...args} onLocationChange={action('Location changed')} />
+    <LocationSelector {...args} onLocationChange={action('Location changed')} />
   );
 };
 

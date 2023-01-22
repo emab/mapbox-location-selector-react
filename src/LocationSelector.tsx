@@ -8,7 +8,7 @@ import type {Map} from 'mapbox-gl';
 import mapbox from 'mapbox-gl';
 import ReactDOM from 'react-dom';
 
-type Location = {
+export type Location = {
   lng: number;
   lat: number;
 };
@@ -21,7 +21,7 @@ type GeocoderResult = {
   };
 };
 
-type LocationPickerProps = {
+type LocationSelectorProps = {
   onLocationChange: (location: Location | undefined) => void;
   accessToken: string;
   initialPosition?: {
@@ -65,13 +65,13 @@ class ClearSelectionControl {
   }
 }
 
-export const LocationPicker = ({
+export const LocationSelector = ({
   onLocationChange,
   accessToken,
   initialPosition,
   geocoderProps,
   mapProps,
-}: LocationPickerProps) => {
+}: LocationSelectorProps) => {
   const [selectedLocation, setSelectedLocation] = useState<Location>();
   const [viewState, setViewState] = useState(
     initialPosition ?? {
