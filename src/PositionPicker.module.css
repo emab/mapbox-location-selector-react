@@ -1,0 +1,21 @@
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.clearButton {
+    font-size: inherit;
+    font-family: inherit;
+    background-color: white;
+    outline: none;
+    border: 0 none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    box-shadow: 0 0 10px 2px rgb(0 0 0 / 10%)
+}
+
+.clearButton:hover {
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.8) !important;
+}
