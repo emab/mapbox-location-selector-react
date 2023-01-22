@@ -1,11 +1,14 @@
 {
   "name": "mapbox-location-selector",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
+  "files": ["dist"],
+  "module": "./dist/LocationPicker.umd.cjs",
   "exports": {
-    "require": "./dist/location-picker.js",
-    "import": "./dist/location-picker.cjs"
+    ".": {
+      "import": "./dist/LocationPicker.umd.cjs"
+    }
   },
   "scripts": {
     "dev": "vite",
@@ -14,15 +17,15 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
-  "peerDependencies": {
+  "dependencies": {
     "@mapbox/mapbox-gl-geocoder": "^5.0.1",
     "mapbox-gl": "^2.12.0",
     "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-map-gl": "^7.0.21"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
-    "@mapbox/mapbox-gl-geocoder": "^5.0.1",
     "@rollup/plugin-typescript": "^11.0.0",
     "@storybook/addon-actions": "^6.5.15",
     "@storybook/addon-essentials": "^6.5.15",
@@ -43,11 +46,7 @@
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-react": "^7.32.1",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "mapbox-gl": "^2.12.0",
     "prettier": "^2.8.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-map-gl": "^7.0.21",
     "typescript": "^4.9.3",
     "vite": "^4.0.0"
   }

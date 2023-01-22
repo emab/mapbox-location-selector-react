@@ -1,5 +1,6 @@
 import {ComponentMeta, ComponentStory} from '@storybook/react';
 import {LocationPicker} from './LocationPicker';
+import {action} from '@storybook/addon-actions';
 
 export default {
   title: 'Location Picker',
@@ -15,7 +16,9 @@ export default {
 } as ComponentMeta<typeof LocationPicker>;
 
 const Template: ComponentStory<typeof LocationPicker> = args => {
-  return <LocationPicker {...args} />;
+  return (
+    <LocationPicker {...args} onLocationChange={action('Location changed')} />
+  );
 };
 
 export const Example = Template.bind({});

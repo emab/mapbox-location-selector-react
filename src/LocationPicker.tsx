@@ -8,9 +8,6 @@ import type {Map} from 'mapbox-gl';
 import mapbox from 'mapbox-gl';
 import ReactDOM from 'react-dom';
 
-import 'mapbox-gl/dist/mapbox-gl.css';
-import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
-
 type Location = {
   lng: number;
   lat: number;
