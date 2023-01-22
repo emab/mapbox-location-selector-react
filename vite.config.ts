@@ -9,9 +9,9 @@ export default defineConfig({
     sourcemap: true,
     lib: {
       formats: ['es'],
-      entry: './src/LocationSelector.tsx',
+      entry: './src/index.ts',
       name: 'LocationSelector',
-      fileName: 'LocationSelector',
+      fileName: 'index',
     },
     rollupOptions: {
       external: [
