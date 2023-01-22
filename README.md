@@ -11,10 +11,18 @@ It allows you to click and select a position on the map. The selected position i
 
 ## Usage
 
-For the map and geolocation input to render properly you'll need to import styles for `react-map-gl` and `mapbox-gl-geocoder`.
+For the map and geolocation input to render properly you'll need to import styles for this component as well as `react-map-gl` and `mapbox-gl-geocoder`.
 
 - `rect-map-gl`: https://visgl.github.io/react-map-gl/docs/get-started/get-started#styling
 - `mapbox-gl-geocoder`: https://github.com/mapbox/mapbox-gl-geocoder
+
+In most cases (for example in NextJS) you can simply add the following lines to the top of your component:
+
+```
+import "mapbox-gl/dist/mapbox-gl.css";
+import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
+import "mapbox-location-selector-react/styles";
+```
 
 Then the component can be rendered anywhere in your application and used to get coordinates of a given place:
 
