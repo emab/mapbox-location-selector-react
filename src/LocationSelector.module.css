@@ -17,5 +17,5 @@
 
 .clearButton:hover {
     cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.8) !important;
+    background-color: rgb(252, 252, 255) !important;
 }

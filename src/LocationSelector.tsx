@@ -1,13 +1,12 @@
 import {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import ReactDOM from 'react-dom';
 
-import type {MapProps, MapRef} from 'react-map-gl';
-import Mapbox, {Marker} from 'react-map-gl';
+import {IControl, Map, MapProps, MapRef, Marker} from 'react-map-gl';
 
 import type {GeocoderOptions} from '@mapbox/mapbox-gl-geocoder';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 
-import type {Map} from 'mapbox-gl';
+import type {Map as MapType} from 'mapbox-gl';
 import mapbox from 'mapbox-gl';
 
 import styles from './LocationSelector.module.css';
@@ -37,8 +36,8 @@ type LocationSelectorProps = {
   mapProps?: Partial<MapProps>;
 };
 
-class ClearSelectionControl {
-  private _map: Map | undefined;
+class ClearSelectionControl implements IControl {
+  private _map: MapType | undefined;
   private _container: HTMLDivElement | undefined;
   private readonly _onClick: () => void;
 
@@ -46,13 +45,18 @@ class ClearSelectionControl {
     this._onClick = options.onClick;
   }
 
-  onAdd(map: Map) {
+  onAdd(map: MapType) {
     this._map = map;
     this._container = document.createElement('div');
     const Component = () => {
       return (
         <div className="mapboxgl-ctrl">
-          <button onClick={this._onClick} className={styles.clearButton}>
+          <button
+            onClick={() => {
+              this._onClick();
+            }}
+            className={styles.clearButton}
+          >
             Clear selection
           </button>
         </div>
@@ -114,13 +118,28 @@ export const LocationSelector = ({
 
     if (map) {
       map.addControl(geocoder);
-      map.addControl(
-        new ClearSelectionControl({
-          onClick: () => setSelectedLocation(undefined),
-        })
-      );
     }
   }, [geocoder]);
+
+  const clearControl = useMemo(
+    () =>
+      new ClearSelectionControl({
+        onClick: () => setSelectedLocation(undefined),
+      }),
+    []
+  );
+
+  useEffect(() => {
+    if (!mapRef.current) {
+      return;
+    }
+    if (selectedLocation && !mapRef.current.hasControl(clearControl)) {
+      mapRef.current.addControl(clearControl);
+    }
+    if (!selectedLocation) {
+      mapRef.current.removeControl(clearControl);
+    }
+  }, [clearControl, selectedLocation]);
 
   useEffect(() => {
     onLocationChange(selectedLocation);
@@ -129,7 +148,7 @@ export const LocationSelector = ({
   return (
     <div className={styles.container}>
       {/* @ts-expect-error - for some reason the fog type is incorrect - ignoring as it's not a problem here */}
-      <Mapbox
+      <Map
         {...mapProps}
         {...viewState}
         ref={mapRef}
@@ -147,7 +166,7 @@ export const LocationSelector = ({
             latitude={selectedLocation.lat}
           />
         )}
-      </Mapbox>
+      </Map>
     </div>
   );
 };
