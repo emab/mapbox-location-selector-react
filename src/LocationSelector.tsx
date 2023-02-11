@@ -136,9 +136,12 @@ export const LocationSelector = ({
   const clearControl = useMemo(
     () =>
       new ClearSelectionControl({
-        onClick: () => setSelectedLocation(undefined),
+        onClick: () => {
+          setSelectedLocation(undefined);
+          onLocationChange(undefined);
+        },
       }),
-    []
+    [onLocationChange]
   );
 
   useEffect(() => {
@@ -153,10 +156,6 @@ export const LocationSelector = ({
     }
   }, [clearControl, selectedLocation]);
 
-  useEffect(() => {
-    onLocationChange(selectedLocation);
-  }, [onLocationChange, selectedLocation]);
-
   return (
     <div className={styles.container}>
       {/* @ts-expect-error - for some reason the fog type is incorrect - ignoring as it's not a problem here */}
@@ -167,7 +166,10 @@ export const LocationSelector = ({
         onLoad={onMapLoad}
         mapLib={mapbox}
         onMove={evt => setViewState(evt.viewState)}
-        onClick={({lngLat}) => setSelectedLocation(lngLat)}
+        onClick={({lngLat}) => {
+          setSelectedLocation(lngLat);
+          onLocationChange(lngLat);
+        }}
         style={{height: '100%', width: '100%'}}
         mapStyle="mapbox://styles/mapbox/streets-v12"
         mapboxAccessToken={accessToken}
