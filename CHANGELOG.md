@@ -11,8 +11,6 @@ New features:
 
 - Added `initialPosition` prop to place an initial marker
 
-
-
 ## v1.0.0
 
 - Initial release
