@@ -1,7 +1,7 @@
 import {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import ReactDOM from 'react-dom';
 
-import {IControl, Map, MapProps, MapRef, Marker} from 'react-map-gl';
+import {IControl, Map, MapProps, MapRef, Marker, ViewState} from 'react-map-gl';
 
 import type {GeocoderOptions} from '@mapbox/mapbox-gl-geocoder';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
@@ -24,14 +24,14 @@ type GeocoderResult = {
   };
 };
 
+type SimpleViewState = Pick<ViewState, 'longitude' | 'latitude' | 'zoom'> &
+  Partial<Omit<ViewState, 'longitude' | 'latitude' | 'zoom'>>;
+
 type LocationSelectorProps = {
   onLocationChange: (location: Location | undefined) => void;
   accessToken: string;
-  initialPosition?: {
-    longitude: number;
-    latitude: number;
-    zoom: number;
-  };
+  initialView?: SimpleViewState;
+  initialLocation?: Location;
   geocoderProps?: Partial<GeocoderOptions>;
   mapProps?: Partial<MapProps>;
 };
@@ -76,13 +76,16 @@ class ClearSelectionControl implements IControl {
 export const LocationSelector = ({
   onLocationChange,
   accessToken,
-  initialPosition,
+  initialView,
+  initialLocation,
   geocoderProps,
   mapProps,
 }: LocationSelectorProps) => {
-  const [selectedLocation, setSelectedLocation] = useState<Location>();
-  const [viewState, setViewState] = useState(
-    initialPosition ?? {
+  const [selectedLocation, setSelectedLocation] = useState<
+    Location | undefined
+  >(initialLocation);
+  const [viewState, setViewState] = useState<SimpleViewState>(
+    initialView ?? {
       longitude: -4,
       latitude: 55,
       zoom: 5,
