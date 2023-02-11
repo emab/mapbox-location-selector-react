@@ -11,6 +11,11 @@ import mapbox from 'mapbox-gl';
 
 import styles from './LocationSelector.module.css';
 
+export type InputLocation = {
+  lng: number | string;
+  lat: number | string;
+};
+
 export type Location = {
   lng: number;
   lat: number;
@@ -31,7 +36,7 @@ type LocationSelectorProps = {
   onLocationChange: (location: Location | undefined) => void;
   accessToken: string;
   initialView?: SimpleViewState;
-  initialLocation?: Location;
+  initialLocation?: InputLocation;
   geocoderProps?: Partial<GeocoderOptions>;
   mapProps?: Partial<MapProps>;
 };
@@ -83,7 +88,11 @@ export const LocationSelector = ({
 }: LocationSelectorProps) => {
   const [selectedLocation, setSelectedLocation] = useState<
     Location | undefined
-  >(initialLocation);
+  >(
+    initialLocation
+      ? {lng: Number(initialLocation.lng), lat: Number(initialLocation.lat)}
+      : undefined
+  );
   const [viewState, setViewState] = useState<SimpleViewState>(
     initialView ?? {
       longitude: -4,
@@ -165,8 +174,8 @@ export const LocationSelector = ({
       >
         {selectedLocation && (
           <Marker
-            longitude={selectedLocation.lng}
-            latitude={selectedLocation.lat}
+            longitude={Number(selectedLocation.lng)}
+            latitude={Number(selectedLocation.lat)}
           />
         )}
       </Map>
