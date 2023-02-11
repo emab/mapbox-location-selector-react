@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.0.1
+
+Updates:
+
+- `onLocationChange` will _only_ be called when the location changes via click or clear
+
 ## v2.0.0
 
 Breaking changes:
