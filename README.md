@@ -33,3 +33,7 @@ const LocationPage = () => {
   return <LocationPicker onLocationChanged={setStoredLocation} accessToken={import.meta.env.MAPBOX_ACCESS_TOKEN} />
 }
 ```
+
+## Demo
+
+[Demo](./demo.mov)
