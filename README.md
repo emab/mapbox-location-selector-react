@@ -36,4 +36,4 @@ const LocationPage = () => {
 
 ## Demo
 
-[Demo](./demo.mov)
+<video src="./demo.mov"></video>
