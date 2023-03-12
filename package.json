@@ -5,6 +5,7 @@
   "files": [
     "dist"
   ],
+  "homepage": "https://github.com/emab/mapbox-location-selector-react",
   "module": "./dist/index.js",
   "exports": {
     ".": {

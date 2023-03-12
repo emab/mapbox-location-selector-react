@@ -121,9 +121,13 @@ export const LocationSelector = ({
         lng: result.geometry.coordinates[0],
         lat: result.geometry.coordinates[1],
       });
+      onLocationChange({
+        lng: result.geometry.coordinates[0],
+        lat: result.geometry.coordinates[1],
+      });
     };
     geocoder?.on('result', onResult);
-  }, [geocoder]);
+  }, [geocoder, onLocationChange]);
 
   const onMapLoad = useCallback(() => {
     const map = mapRef.current;
