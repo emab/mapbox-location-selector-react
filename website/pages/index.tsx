@@ -59,6 +59,29 @@ export default function Home({publicAccessToken}: HomeProps) {
           onLocationChange={setSelectedLocation}
         />
       </div>
+      <footer className="p-8 bg-sky-800 text-white text-center">
+        <p className="font-medium">Made by Eddy Brown</p>
+        <div className="flex flex-col">
+          <a
+            className="text-blue-300 hover:text-blue-200"
+            href="https://blog.devbrown.com/projects"
+          >
+            Other Projects
+          </a>
+          <a
+            className="text-blue-300 hover:text-blue-200"
+            href="https://blog.devbrown.com/blog"
+          >
+            Blog
+          </a>
+          <a
+            className="text-blue-300 hover:text-blue-200"
+            href="https://github.com/emab"
+          >
+            GitHub
+          </a>
+        </div>
+      </footer>
     </div>
   );
 }
