@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.0.2
+
+Updates:
+
+- Ensure `onLocationChange` is triggered when you complete a search
+
 ## v2.0.1
 
 Updates:
